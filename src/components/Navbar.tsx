@@ -1,29 +1,8 @@
-import { useState } from "react";
+import DropdownButton from "./DropdownButton";
 
 export default function Navbar() {
-    function DropdownButton(props: any) {
-        const [open, setOpen] = useState(false);
-
-        return (
-            <button
-                className="flex flex-col text-left"
-                onClick={() => (open ? setOpen(false) : setOpen(true))}
-            >
-                {props.text && props.text}
-                {props.children.map((child: any, index: any) => (
-                    <div
-                        key={index}
-                        className={`${open ? "visible" : "hidden"}`}
-                    >
-                        {child}
-                    </div>
-                ))}
-            </button>
-        );
-    }
-
     return (
-        <ul className="flex w-screen gap-2 bg-slate-800 text-slate-100">
+        <ul className="flex w-screen justify-center gap-4 bg-slate-800 p-4 text-slate-100">
             <li>
                 <a href="https://github.com/moonlight-stream">Github</a>
             </li>

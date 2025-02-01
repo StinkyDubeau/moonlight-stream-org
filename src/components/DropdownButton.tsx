@@ -1,25 +1,27 @@
-import { useState } from "react";
+// Children of this dropdown component will be rendered as list items under the main button. If there are no children on the component, no dropdown will render and the dropdown button will link to the "link" property.
 
 export default function DropdownButton(props: any) {
-    const [open, setOpen] = useState(false);
-
     return (
-        <button
-            className="flex flex-col text-left relative"
-            onClick={() => (open ? setOpen(false) : setOpen(true))}
-            onMouseLeave={() => setOpen(false)}
+        <a
+            href={props.link}
+            className={`dropdown ${props.children ? "dropdown-hover" : ""}`}
         >
-            {props.text && (
-                <p className="transition-all hover:scale-105">{props.text}</p>
-            )}
-            {props.children.map((child: any, index: any) => (
-                <div
-                    key={index}
-                    className={`${open ? "visible" : "hidden"} top-1 absolute transition-all hover:scale-105`}
-                >
-                    {child}
-                </div>
-            ))}
-        </button>
+            <div
+                tabIndex={0}
+                role="button"
+                className="btn m-1"
+            >
+                {props.text}
+            </div>
+            <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 text-black shadow-sm"
+            >
+                {props.children &&
+                    props.children.map((child: any, index: any) => (
+                        <li key={index}>{child}</li>
+                    ))}
+            </ul>
+        </a>
     );
 }
